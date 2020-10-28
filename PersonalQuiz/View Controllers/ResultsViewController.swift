@@ -9,12 +9,11 @@ import UIKit
 
 class ResultsViewController: UIViewController {
     
-  
     @IBOutlet var resultsNavigationItem: UINavigationItem!
     @IBOutlet var animalLabel: UILabel!
     @IBOutlet var characteristicLabel: UILabel!
     
-    var choosenAnswers: [Answer]!
+    var answersChoosen: [Answer]!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -37,12 +36,11 @@ class ResultsViewController: UIViewController {
     
     private func frequentAnimalTypeInAnswers() -> AnimalType? {
         var countAnimalTypes: [AnimalType: Int] = [:]
-        for answer in choosenAnswers {
+        for answer in answersChoosen {
             let answerType = answer.type
             countAnimalTypes[answerType] = (countAnimalTypes[answerType] ?? 0) + 1
         }
         
         return countAnimalTypes.max { $0.value < $1.value }?.key
     }
-
 }
